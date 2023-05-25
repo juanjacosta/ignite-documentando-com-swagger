@@ -11,3 +11,11 @@
 - [x] Receber id de um usuário e devolver as informações desse usuário
 
 - [x] Mostrar todos os usuários cadastrados para uma requisição feita por um usuário admin 
+
+### Instalação
+
+Definir versão do node: `nvm use` 
+
+Instalar pacotes: `yarn`
+
+Rodar: `yarn dev`
