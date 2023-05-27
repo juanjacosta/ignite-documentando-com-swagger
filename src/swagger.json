@@ -1,12 +1,129 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "RentalX Documentation",
-    "description": "This is an API Rent",
+    "title": "Documentação desafio Ignite NodeJs",
+    "description": "Essa é a documentação do projeto Introdução ao solid",
     "version": "1.0.0",
     "contact": {
       "email": "juan_jg@hotmail.com"
     }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Cria um novo usuário",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "John Doe",
+                  "email": "johndoe@email.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type":"object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updaetd_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example":{
+                    "id": "d0c21ec2-a727-4dcc-93f6-e10cd8c9390e",
+                    "admin": false,
+                    "name": "John Doe",
+                    "email": "johndoe@email.com",
+                    "created_at": "2023-05-27T03:51:54.825Z",
+                    "updated_at": "2023-05-27T03:51:54.825Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email já está sendo utilizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User email already exists"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Users"],
+        "summary": "Retorna todos os usuários",
+        "description": "Somente usuário admin pode acessar",
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usuário sem permissão ou Usuário não encontrado"
+          }
+        }
+      }
+    }
   }
 }
-

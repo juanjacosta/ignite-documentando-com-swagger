@@ -1,18 +1,17 @@
-import express from "express";
+import express from "express"
 
-import swaggerUi from "swagger-ui-express";
+import swaggerUi from "swagger-ui-express"
 
-import { usersRoutes } from "./routes/users.routes";
+import { usersRoutes } from "./routes/users.routes"
 
-import swaggerFile from "./swagger.json";
+import swaggerFile from "./swagger.json"
 
-const app = express();
+const app = express()
 
-app.use(express.json());
+app.use(express.json())
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
-app.use("/users", usersRoutes);
+app.use("/users", usersRoutes)
 
-export { app };
-
+export { app }
