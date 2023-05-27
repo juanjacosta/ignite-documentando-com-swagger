@@ -12,6 +12,12 @@
 
 - [x] Mostrar todos os usuários cadastrados para uma requisição feita por um usuário admin 
 
+### Documentação
+
+- [x] Cadastro de usuário
+
+- [ ] Listagem de usuários
+
 ### Instalação
 
 Definir versão do node: `nvm use` 
