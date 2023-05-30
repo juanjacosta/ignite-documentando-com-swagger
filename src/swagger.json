@@ -172,7 +172,7 @@
                     }
                   },
                   "example": {
-                    "error": "User is not an administrator"
+                    "error": "Usuário não é administrador"
                   }
                 }
               }
@@ -186,40 +186,71 @@
         "tags": ["Users"],
         "summary": "Retorna um usuário específico",
         "description": "Retorna um usuário específico",
-        "parameters": {
-          "- in": "path",
-          "name": "user_id",
-          "schema": {
-            "type": "integer"
-          },
-          "required": true,
-          "minimum": 1,
-          "description": "Parameter description in Markdown"
-        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Operação realizada com sucesso",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "email": {
-                        "type": "string"
-                      }
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updaetd_at": {
+                      "type": "string"
                     }
+                  },
+                  "example": {
+                    "id": "46064b4c-7eb2-4348-90ed-3ea7b5baabc1",
+                    "admin": false,
+                    "name": "rocketseat",
+                    "email": "rocketseat@email.com",
+                    "created_at": "2023-05-30T11:53:51.714Z",
+                    "updated_at": "2023-05-30T11:53:51.714Z"
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "Usuário sem permissão ou Usuário não encontrado"
+            "description": " Usuário não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Usuário não encontrado"
+                  }
+                }
+              }
+            }
           }
         }
       }
