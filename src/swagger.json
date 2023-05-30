@@ -14,6 +14,8 @@
         "tags": ["Users"],
         "summary": "Cria um novo usuário",
         "requestBody": {
+          "required": true,
+          "description": "Campos obrigatórios para criação de um usuário",
           "content": {
             "application/json": {
               "schema": {
@@ -97,6 +99,15 @@
         "tags": ["Users"],
         "summary": "Retorna todos os usuários",
         "description": "Somente usuário admin pode acessar",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "description": "user_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Operação realizada com sucesso",
@@ -107,20 +118,65 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "admin": {
+                        "type": "boolean"
+                      },
                       "name": {
                         "type": "string"
                       },
                       "email": {
                         "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updaetd_at": {
+                        "type": "string"
                       }
                     }
-                  }
+                  },
+                  "example": [
+                    {
+                      "id": "2568760f-a069-4c3d-b5bd-a144972c74c6",
+                      "admin": false,
+                      "name": "John Doe",
+                      "email": "john.doe@email.com",
+                      "created_at": "2023-05-30T11:35:35.847Z",
+                      "updated_at": "2023-05-30T11:35:35.847Z"
+                    },
+                    {
+                      "id": "91b92ed5-8063-43bc-89e3-1d348d828100",
+                      "admin": true,
+                      "name": "rocketseat",
+                      "email": "rocketseat@email.com",
+                      "created_at": "2023-05-30T11:36:03.877Z",
+                      "updated_at": "2023-05-30T11:36:29.022Z"
+                    }
+                  ]
                 }
               }
             }
           },
           "400": {
-            "description": "Usuário sem permissão ou Usuário não encontrado"
+            "description": "Usuário sem permissão ou Usuário não encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User is not an administrator"
+                  }
+                }
+              }
+            }
           }
         }
       }
